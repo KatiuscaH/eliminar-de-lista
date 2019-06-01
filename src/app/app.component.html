@@ -1,0 +1,39 @@
+<div>
+	<div>
+		<div>
+          <h1>Tienes #<span class='highlight'>{{items.length}}</span>
+            elementos en la lista.
+          </h1>
+      </div>
+    </div>
+</div>
+<div>
+  <form (ngSubmit)="save()">
+    <div class="form-group">
+      <input class="form-group"
+        id="textId"
+        type="text"
+        placeholder="Adiciona a la lista..."
+        required
+        minlength="3"
+        [(ngModel)]="model.text"
+        name="text" />
+    </div>
+    <button type='submit'>Adiciona a la lista</button>
+    <button (click)='clearComplete()' type='button'>Elimina toda la lista</button>
+  </form>
+  <label class="label">Form Model: {{this.model | json}}</label><br />
+  <label class="label">List: {{this.items | json}}</label><br />
+</div>
+<div *ngIf="items.length > 0" class="mt-20">
+  <div *ngFor="let item of items" class="individual">
+    <div class="list-items">
+      <div class="items">
+        <label for="check1">
+        <div><i class="fa fa-check"></i></div> {{item.text || 'Add some thing'}}
+        </label>
+        <button (click)='clearSelected(item.text)' type='button'>Elimina seleccionado</button>
+      </div>
+    </div>
+  </div>
+</div>
